@@ -1,9 +1,14 @@
+"use client";
 import React, { useState } from "react";
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
-import { message, Upload } from "antd";
+import { Button, message, Upload } from "antd";
 import type { UploadChangeParam } from "antd/es/upload";
 import type { RcFile, UploadFile, UploadProps } from "antd/es/upload/interface";
 import { predictMangoService } from "../service/service";
+import { InboxOutlined } from "@ant-design/icons";
+import { usePathname, useRouter } from "next/navigation";
+
+var _ = require("lodash");
 
 const getBase64 = (img: RcFile, callback: (url: string) => void) => {
   const reader = new FileReader();
@@ -24,9 +29,15 @@ const beforeUpload = (file: RcFile) => {
 };
 
 const ImageUpload: React.FC = () => {
+  const pathname = usePathname();
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
-  const [imageUrl, setImageUrl] = useState<string>();
-  const [mangoType, setMangoType] = useState<string>();
+  const [imageUrl, setImageUrl] = useState<string>("");
+  const [mangoType, setMangoType] = useState<any>([
+    { name: "Mahachanok", value: "MHN" },
+    { name: "Nam dok mai", value: "NDM" },
+    { name: "R2E2", value: "R2E2" },
+  ]);
 
   const handleChange: UploadProps["onChange"] = (
     info: UploadChangeParam<UploadFile>
@@ -40,7 +51,7 @@ const ImageUpload: React.FC = () => {
       getBase64(info.file.originFileObj as RcFile, (url) => {
         setLoading(false);
         setImageUrl(url);
-        handleSubmit(url);
+        // handleSubmit(url);
       });
     }
   };
@@ -53,55 +64,99 @@ const ImageUpload: React.FC = () => {
   );
 
   const handleSubmit = async (img: any) => {
-    const res = await predictMangoService(img);
-    if (res?.statusCode === 200) {
-      setMangoType(res.data);
-    }
+    if (pathname === "/") {
+      const res = await predictMangoService(img);
+      console.log("🚀 ~ handleSubmit ~ res:", res);
+      if (res?.statusCode === 200) {
+        mangoType.filter;
+        const predictMango = _.filter(mangoType, { name: res.data });
+        console.log("🚀 ~ handleSubmit ~ predictMango:", predictMango);
+        // setMangoType(res.data);
+        router.push(`mango-varieties/${predictMango[0].value}`);
+      }
 
-    console.log("🚀 ~ file: ImageUpload.tsx:57 ~ handleSubmit ~ res:", res);
-    // setMangoType;
+      console.log("🚀 ~ file: ImageUpload.tsx:57 ~ handleSubmit ~ res:", res);
+      // setMangoType;
+    } else if (pathname === "/maturity") {
+      console.log("🚀 ~ handleSubmit ~ img:", img);
+    }
+  };
+
+  const { Dragger } = Upload;
+
+  const props: UploadProps = {
+    name: "file",
+    action: "https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188",
+    // beforeUpload: () => {
+    //   return false;
+    // },
+    maxCount: 1, // Set maxCount to 1 to allow only one file to be uploaded
+    onChange(info) {
+      // handleChange(info);
+      console.log("🚀 ~ onChange ~ info:", info);
+      if (info.fileList.length <= 0) {
+        setImageUrl("");
+      }
+      const { status } = info.file;
+      if (status !== "uploading") {
+        console.log(info.file, info.fileList);
+      }
+      if (status === "done") {
+        message.success(`${info.file.name} file uploaded successfully.`);
+        getBase64(info.file.originFileObj as RcFile, (url) => {
+          setImageUrl(url);
+          // handleSubmit(url);
+        });
+        // handleChange(info);
+      } else if (status === "error") {
+        console.log("🚀 ~ onChange ~ status:", info);
+
+        message.error(`${info.file.name} file upload failed.`);
+      }
+    },
+    onDrop(e) {
+      console.log("Dropped files", e.dataTransfer.files);
+    },
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        flexDirection: "column",
-        height: "500px",
-      }}
-    >
-      {/* {imageUrl ? (
-        <img src={imageUrl} alt="avatar" style={{ width: "50%" }} />
-      ) : (
-        ""
-      )} */}
-
-      <Upload
-        name="avatar"
-        listType="picture-circle"
-        className="avatar-uploader"
-        showUploadList={false}
-        action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"
-        beforeUpload={beforeUpload}
-        onChange={handleChange}
+    <div>
+      <Dragger {...props}>
+        <p className="ant-upload-drag-icon">
+          <InboxOutlined />
+        </p>
+        <p className="ant-upload-text">
+          Click or drag file to this area to upload
+        </p>
+        <p className="ant-upload-hint">
+          Support for single file upload. Strictly prohibited from uploading
+          company data or other banned files.
+        </p>
+      </Dragger>
+      <div
+        style={{
+          marginTop: "20px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
       >
-        {/* {uploadButton} */}
-        {imageUrl ? (
-          <img src={imageUrl} alt="avatar" style={{ width: "100%" }} />
-        ) : (
-          uploadButton
-        )}
-      </Upload>
-
-      <div style={{ marginTop: "50px" }}>
         {" "}
-        {mangoType ? (
-          <h1>This mango type is {mangoType}</h1>
-        ) : (
-          "Please upload mango image"
-        )}
+        <Button
+          disabled={imageUrl === ""}
+          onClick={() => {
+            handleSubmit(imageUrl);
+          }}
+          type="primary"
+          style={{
+            backgroundColor: "#FFB13B",
+            width: "80%",
+            fontSize: "24px",
+            height: "50px",
+          }}
+        >
+          CLASSIFICATION
+        </Button>
       </div>
     </div>
   );
