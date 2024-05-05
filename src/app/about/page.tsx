@@ -5,12 +5,10 @@ interface LayoutProps {
   children: ReactNode;
 }
 
-const Layout: React.FC<LayoutProps> = ({ children }) => {
+export default function About() {
   return (
     <div>
       <h1>about</h1>
     </div>
   );
-};
-
-export default Layout;
+}

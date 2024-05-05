@@ -87,7 +87,7 @@ const contentStyle: React.CSSProperties = {
   background: "#364d79",
 };
 
-const Layout: React.FC<pageProps> = ({ params }) => {
+export default function MangoVariety({ params }: pageProps) {
   const emptyMango: Mango = {
     id: "",
     img: [],
@@ -190,6 +190,4 @@ const Layout: React.FC<pageProps> = ({ params }) => {
       </div>
     </div>
   );
-};
-
-export default Layout;
+}

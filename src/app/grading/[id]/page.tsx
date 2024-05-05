@@ -39,7 +39,9 @@ interface Mango {
   maturity: any;
 }
 
-const Layout: React.FC<pageProps> = ({ params }) => {
+// const Layout: React.FC<pageProps> = ({ params }) => {
+
+export default function Mango({ params }: pageProps) {
   const [dataset, setDataset] = useState([
     {
       id: "MHNM1",
@@ -285,6 +287,4 @@ const Layout: React.FC<pageProps> = ({ params }) => {
       </div>
     </div>
   );
-};
-
-export default Layout;
+}

@@ -26,7 +26,8 @@ const dataset = [
     name: "R2E2",
   },
 ];
-const Layout: React.FC<LayoutProps> = ({ children }) => {
+// const Layout: React.FC<LayoutProps> = ({ children }) => {
+export default function Mango() {
   return (
     <div className="wrapper">
       <div className="varity-container">
@@ -36,6 +37,4 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       </div>
     </div>
   );
-};
-
-export default Layout;
+}
