@@ -86,7 +86,7 @@ const ImageUpload: React.FC = () => {
 
   const props: UploadProps = {
     name: "file",
-    action: "https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188",
+    action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
     // beforeUpload: () => {
     //   return false;
     // },
@@ -98,21 +98,28 @@ const ImageUpload: React.FC = () => {
         setImageUrl("");
       }
       const { status } = info.file;
-      if (status !== "uploading") {
-        console.log(info.file, info.fileList);
-      }
-      if (status === "done") {
-        message.success(`${info.file.name} file uploaded successfully.`);
-        getBase64(info.file.originFileObj as RcFile, (url) => {
-          setImageUrl(url);
-          // handleSubmit(url);
-        });
-        // handleChange(info);
-      } else if (status === "error") {
-        console.log("🚀 ~ onChange ~ status:", info);
+      message.success(`${info.file.name} file uploaded successfully.`);
+      getBase64(info.file.originFileObj as RcFile, (url) => {
+        setImageUrl(url);
+        // handleSubmit(url);
+      });
+      // if (status !== "uploading") {
+      //   console.log(info.file, info.fileList);
+      // }
+      // if (status === "done") {
+      //   message.success(`${info.file.name} file uploaded successfully.`);
+      //   getBase64(info.file.originFileObj as RcFile, (url) => {
+      //     setImageUrl(url);
+      //     // handleSubmit(url);
+      //   });
+      //   // handleChange(info);
+      // }
 
-        message.error(`${info.file.name} file upload failed.`);
-      }
+      // else if (status === "error") {
+      //   console.log("🚀 ~ onChange ~ status:", info);
+
+      //   message.error(`${info.file.name} file upload failed.`);
+      // }
     },
     onDrop(e) {
       console.log("Dropped files", e.dataTransfer.files);
