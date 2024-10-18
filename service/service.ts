@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const base64ToBlob = (base64Data, contentType = "", sliceSize = 512) => {
+const base64ToBlob = (base64Data: any, contentType = "", sliceSize = 512) => {
   const byteCharacters = atob(base64Data);
   const byteArrays = [];
 
@@ -19,7 +19,7 @@ const base64ToBlob = (base64Data, contentType = "", sliceSize = 512) => {
   return new Blob(byteArrays, { type: contentType });
 };
 
-export const predictMangoService = async (base64Image) => {
+export const predictMangoService = async (base64Image: any) => {
   console.log("Submitting image for prediction...");
 
   const base64Data = base64Image.split(",")[1]; // Get the base64 part
