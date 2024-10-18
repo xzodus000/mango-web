@@ -1,16 +1,17 @@
 "use client";
 import Image from "next/image";
-import ImageUpload from "../../../component/ImageUpload";
 import React, { useState } from "react";
 import { PlusOutlined } from "@ant-design/icons";
 import { Modal, Upload } from "antd";
 import type { RcFile, UploadProps } from "antd/es/upload";
 import type { UploadFile } from "antd/es/upload/interface";
-import start_btn from "../../public/assets/image.png";
+// import start_btn from "../../public/assets/image.png";
+
 // import mango from "../../public/assets/mango.png";
 import mango from "../../../public/assets/mango.png";
 
-import CustomModal from "../../../component/Modal";
+// import CustomModal from "../../../component/Modal";
+import UploaderModal from "../../../component/Uploader";
 export default function Maturity() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   return (
@@ -18,6 +19,10 @@ export default function Maturity() {
     //   <div>{/* <ImageUpload /> */}</div>
     // </main>
     <div className="home-wrapper">
+      <UploaderModal
+        isModalOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
+      />
       <div className="left-content">
         <div className="container">
           <div className="box">
@@ -36,10 +41,15 @@ export default function Maturity() {
           </div>
           <div className="box">
             <div className="btn-start">
-              <CustomModal
-                isModalOpen={isModalOpen}
-                setIsModalOpen={setIsModalOpen}
-              />
+              <button
+                onClick={() => setIsModalOpen(true)}
+                style={{ cursor: "pointer" }}
+              >
+                <img
+                  src={"/assets/image.png"} // Path relative to the public directory
+                  alt="start-search"
+                ></img>
+              </button>
             </div>
           </div>
         </div>
