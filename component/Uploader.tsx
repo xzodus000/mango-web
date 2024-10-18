@@ -87,6 +87,8 @@ const UploaderModal: React.FC<UploaderModalProps> = ({
 
     try {
       const res = await predictMangoService(base64Image);
+      console.log("🚀 ~ handleSubmit ~ res:", res);
+
       if (res?.statusCode === 200) {
         const matchedMango = _.find(mangoTypes, { name: res.data });
         if (matchedMango) {
