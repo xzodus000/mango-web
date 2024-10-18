@@ -43,7 +43,7 @@ const UploaderModal: React.FC<UploaderModalProps> = ({
 
     if (file.type && file.type.includes("image/")) {
       setFileList([file as RcFile]);
-      readFileAsDataURL(file);
+      readFileAsDataURL(file as RcFile);
     } else {
       message.error("You can only upload image files!");
     }
@@ -102,26 +102,6 @@ const UploaderModal: React.FC<UploaderModalProps> = ({
     } finally {
       setLoading(false); // End loading state
     }
-  };
-
-  const props = {
-    name: "file",
-    multiple: true,
-    onChange(info) {
-      const { status } = info.file;
-      if (status !== "uploading") {
-        console.log(info.file, info.fileList);
-      }
-      if (status === "done") {
-        message.success(`${info.file.name} file uploaded successfully.`);
-      } else if (status === "error") {
-        message.error(`${info.file.name} file upload failed.`);
-      }
-      setFileList(info.fileList);
-    },
-    onDrop(e) {
-      console.log("Dropped files", e.dataTransfer.files);
-    },
   };
 
   return (
