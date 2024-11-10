@@ -44,7 +44,7 @@ interface Mango {
 export default function Mango({ params }: pageProps) {
   const [dataset, setDataset] = useState([
     {
-      id: "MHNM1",
+      id: "MHN_M1",
       name: "Mahachanok Mango",
       maturityStage: "M1",
       type: "MHN",
@@ -58,7 +58,7 @@ export default function Mango({ params }: pageProps) {
     },
 
     {
-      id: "MHNM2",
+      id: "MHN_M2",
       name: "Mahachanok Mango",
       maturityStage: "M2",
       type: "MHN",
@@ -72,7 +72,7 @@ export default function Mango({ params }: pageProps) {
     },
 
     {
-      id: "MHNM3",
+      id: "MHN_M3",
       name: "Mahachanok Mango",
       maturityStage: "M3",
       type: "MHN",
@@ -86,7 +86,7 @@ export default function Mango({ params }: pageProps) {
     },
 
     {
-      id: "NDMM1",
+      id: "NDM_M1",
       name: "Namdokmai Sithong Mango",
       maturityStage: "M1",
       type: "NDM",
@@ -100,7 +100,7 @@ export default function Mango({ params }: pageProps) {
     },
 
     {
-      id: "NDMM2",
+      id: "NDM_M2",
       name: "Namdokmai Sithong Mango",
       maturityStage: "M2",
       type: "NDM",
@@ -114,7 +114,7 @@ export default function Mango({ params }: pageProps) {
     },
 
     {
-      id: "NDMM3",
+      id: "NDM_M3",
       name: "Namdokmai Sithong Mango",
       maturityStage: "M3",
       type: "NDM",
@@ -128,7 +128,7 @@ export default function Mango({ params }: pageProps) {
     },
 
     {
-      id: "R2E2M1",
+      id: "R2E2_M1",
       name: "R2E2 Mango",
       maturityStage: "M1",
       type: "R2E2",
@@ -141,7 +141,7 @@ export default function Mango({ params }: pageProps) {
     },
 
     {
-      id: "R2E2M2",
+      id: "R2E2_M2",
       name: "R2E2 Mango",
       maturityStage: "M2",
       type: "R2E2",
@@ -270,13 +270,13 @@ export default function Mango({ params }: pageProps) {
                 </div>
                 <div className="column line-text right">
                   <Image
-                    src={selectedMango.maturity?.water ? correct : wrong}
+                    src={selectedMango.maturity?.saline2 ? correct : wrong}
                     alt="footer1"
                   ></Image>
                 </div>
                 <div className="column">
                   <Image
-                    src={selectedMango.maturity?.water ? correct : wrong}
+                    src={selectedMango.maturity?.saline3 ? correct : wrong}
                     alt="footer1"
                   ></Image>
                 </div>

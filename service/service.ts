@@ -13,20 +13,24 @@ const base64ToBlob = (base64Data: any, contentType: any) => {
 export const predictMangoService = async (base64Image: any) => {
   console.log("Submitting image for prediction...");
 
-  const [metadata, base64Data] = base64Image.split(","); // Split the metadata from the base64 data
-  const mimeType = metadata.match(/:(.*?);/)[1]; // Extract the MIME type from the metadata
+  const [prefix, base64Data] = base64Image.split(","); // Get the base64 part
   console.log("🚀 ~ predictMangoService ~ base64Data:", base64Data);
-  console.log("🚀 ~ predictMangoService ~ mimeType:", mimeType);
 
-  const blob = base64ToBlob(base64Data, mimeType); // Use the dynamic MIME type
+  const mimeType = prefix.match(/data:(.*?);/)[1]; // Get the MIME type from the prefix
+  const blob = base64ToBlob(base64Data, mimeType);
   console.log("🚀 ~ predictMangoService ~ blob:", blob);
 
-  const file = new File([blob], "mango", { type: mimeType }); // Use a generic name without extension
-  console.log("🚀 ~ predictMangoService ~ file:", file);
+  const file = new File([blob], `mango.${mimeType.split("/")[1]}`, {
+    type: mimeType,
+  });
 
   const url = "http://5.183.8.75:5000/upload";
+  // const url = "http://127.0.0.1:5000/upload-phase-maturity";
+  // const url = "http://127.0.0.1:5000/upload";
+
   const formData = new FormData();
   formData.append("file", file);
+  console.log("🚀 ~ predictMangoService ~ formData:", formData);
 
   try {
     const response = await axios.post(url, formData, {
@@ -38,8 +42,45 @@ export const predictMangoService = async (base64Image: any) => {
     return response.data;
   } catch (error) {
     console.error("Error during prediction:", error);
+    return null; // Return null in case of an error
   }
 };
+export const predictMangoPhase2Service = async (base64Image: any) => {
+  console.log("Submitting image for prediction...");
+
+  const [prefix, base64Data] = base64Image.split(","); // Get the base64 part
+  console.log("🚀 ~ predictMangoService ~ base64Data:", base64Data);
+
+  const mimeType = prefix.match(/data:(.*?);/)[1]; // Get the MIME type from the prefix
+  const blob = base64ToBlob(base64Data, mimeType);
+  console.log("🚀 ~ predictMangoService ~ blob:", blob);
+
+  const file = new File([blob], `mango.${mimeType.split("/")[1]}`, {
+    type: mimeType,
+  });
+
+  const url = "http://5.183.8.75:5000/upload-phase-maturity";
+  // const url = "http://127.0.0.1:5000/upload-phase-maturity";
+  // const url = "http://127.0.0.1:5000/upload";
+
+  const formData = new FormData();
+  formData.append("file", file);
+  console.log("🚀 ~ predictMangoService ~ formData:", formData);
+
+  try {
+    const response = await axios.post(url, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    console.log("Response data:", response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Error during prediction:", error);
+    return null; // Return null in case of an error
+  }
+};
+
 // export const predictMangoService = async (filePath: any) => {
 //   console.log("🚀 ~ predictMangoService ~ filePath:", filePath);
 //   try {

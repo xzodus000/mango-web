@@ -4,7 +4,10 @@ import { InboxOutlined, UploadOutlined } from "@ant-design/icons";
 import type { RcFile, UploadFile } from "antd/es/upload/interface";
 import { useRouter, usePathname } from "next/navigation";
 import _ from "lodash";
-import { predictMangoService } from "../service/service";
+import {
+  predictMangoService,
+  predictMangoPhase2Service,
+} from "../service/service";
 import Dragger from "antd/es/upload/Dragger";
 
 interface UploaderModalProps {
@@ -86,18 +89,35 @@ const UploaderModal: React.FC<UploaderModalProps> = ({
     setLoading(true); // Start loading state
 
     try {
-      const res = await predictMangoService(base64Image);
-      console.log("🚀 ~ handleSubmit ~ res:", res);
+      console.log("🚀 ~ handleSubmit ~ pathname:", pathname);
+      if (pathname === "/maturity") {
+        const res = await predictMangoPhase2Service(base64Image);
+        console.log("🚀 ~ handleSubmit ~ res:", res);
 
-      if (res?.statusCode === 200) {
-        const matchedMango = _.find(mangoTypes, { name: res.data });
-        if (matchedMango) {
-          router.push(`/mango-varieties/${matchedMango.value}`);
+        if (res?.statusCode === 200) {
+          const matchedMango = res.data;
+          if (matchedMango) {
+            router.push(`/grading/${matchedMango}`);
+          } else {
+            message.error("Mango variety not found!");
+          }
         } else {
-          message.error("Mango variety not found!");
+          message.error("Prediction failed. Try again.");
         }
       } else {
-        message.error("Prediction failed. Try again.");
+        const res = await predictMangoService(base64Image);
+        console.log("🚀 ~ handleSubmit ~ res:", res);
+
+        if (res?.statusCode === 200) {
+          const matchedMango = _.find(mangoTypes, { name: res.data });
+          if (matchedMango) {
+            router.push(`/mango-varieties/${matchedMango.value}`);
+          } else {
+            message.error("Mango variety not found!");
+          }
+        } else {
+          message.error("Prediction failed. Try again.");
+        }
       }
     } catch (error) {
       message.error("Error occurred during mango prediction.");
