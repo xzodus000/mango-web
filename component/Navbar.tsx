@@ -52,8 +52,12 @@ const Navbar: React.FC = () => {
                 {item.pathname === "/contact" || item.pathname === "/about" ? (
                   <a
                     onClick={(e) => {
+                      let isContact: boolean = true;
+                      if (item.pathname === "/about") {
+                        isContact = false;
+                      }
                       e.preventDefault();
-                      handleModalOpen(item.pathname as "contact" | "about");
+                      handleModalOpen(isContact ? "contact" : "about");
                     }}
                   >
                     {item.name}
