@@ -2,18 +2,23 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useRouter, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { Modal } from "antd";
 import logo from "../public/assets/logo.png";
 import contact from "../public/assets/contact.png";
 
-const Navbar = () => {
-  const router = useRouter();
+type Page = {
+  id: number;
+  name: string;
+  pathname: string;
+};
+
+const Navbar: React.FC = () => {
   const pathname = usePathname();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [typeModal, setTypeModal] = useState("contact");
+  const [typeModal, setTypeModal] = useState<"contact" | "about">("contact");
 
-  const pages = [
+  const pages: Page[] = [
     { id: 2, name: "Maturity", pathname: "/maturity" },
     { id: 3, name: "Mango varieties", pathname: "/mango-varieties" },
     { id: 4, name: "Commercial grading", pathname: "/grading" },
@@ -21,7 +26,7 @@ const Navbar = () => {
     { id: 6, name: "About us", pathname: "/about" },
   ];
 
-  const handleModalOpen = (modalType) => {
+  const handleModalOpen = (modalType: "contact" | "about") => {
     setTypeModal(modalType);
     setIsModalOpen(true);
   };
@@ -31,7 +36,7 @@ const Navbar = () => {
       <div className="navbar bg-base-100">
         <div className="flex-1">
           <Link href="/" className="btn btn-ghost normal-case text-xl">
-            <Image src={logo} alt="Example Image" />
+            <Image src={logo} alt="Logo" />
           </Link>
         </div>
         <div className="flex-2">
@@ -48,7 +53,7 @@ const Navbar = () => {
                   <a
                     onClick={(e) => {
                       e.preventDefault();
-                      handleModalOpen(item.pathname);
+                      handleModalOpen(item.pathname as "contact" | "about");
                     }}
                   >
                     {item.name}
@@ -64,36 +69,24 @@ const Navbar = () => {
 
       <Modal
         title={
-          typeModal === "/contact" ? (
-            <div
-              style={{
-                fontSize: "50px",
-                fontFamily: "Poppins",
-                fontWeight: "500",
-              }}
-            >
-              Contact
-            </div>
-          ) : (
-            <div
-              style={{
-                fontSize: "50px",
-                fontFamily: "Poppins",
-                fontWeight: "500",
-              }}
-            >
-              About us
-            </div>
-          )
+          <div
+            style={{
+              fontSize: "50px",
+              fontFamily: "Poppins",
+              fontWeight: "500",
+            }}
+          >
+            {typeModal === "contact" ? "Contact" : "About us"}
+          </div>
         }
         open={isModalOpen}
         onCancel={() => setIsModalOpen(false)}
         footer={null}
-        closable={true}
+        closable
         width={900}
       >
-        {typeModal === "/contact" ? (
-          <Image src={contact} alt="Example Image" />
+        {typeModal === "contact" ? (
+          <Image src={contact} alt="Contact" />
         ) : (
           <p
             style={{
