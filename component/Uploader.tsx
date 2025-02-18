@@ -106,7 +106,7 @@ const UploaderModal: React.FC<UploaderModalProps> = ({
 
     try {
       console.log("🚀 ~ handleSubmit ~ pathname:", pathname);
-      if (pathname === "/maturity") {
+      if (pathname === "/") {
         const res = await predictMangoPhase2Service(base64Image);
         console.log("🚀 ~ handleSubmit ~ res:", res);
 
