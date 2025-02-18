@@ -77,7 +77,15 @@ const UploaderModal: React.FC<UploaderModalProps> = ({
   const getBase64 = (img: RcFile): Promise<string> => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
-      reader.onload = () => resolve(reader.result as string);
+      reader.onload = (event) => {
+        const imgElement = new Image();
+        imgElement.src = event.target?.result as string;
+        imgElement.onload = () => {
+          console.log("Image dimensions before upload:");
+          console.log("Width:", imgElement.width, "Height:", imgElement.height);
+          resolve(imgElement.src);
+        };
+      };
       reader.onerror = reject;
       reader.readAsDataURL(img);
     });
@@ -88,6 +96,14 @@ const UploaderModal: React.FC<UploaderModalProps> = ({
 
     setLoading(true); // Start loading state
 
+    // Create an Image object to get the width and height of the base64 image
+    const img = new Image();
+    img.onload = () => {
+      console.log("Image width:", img.width);
+      console.log("Image height:", img.height);
+    };
+    img.src = base64Image;
+
     try {
       console.log("🚀 ~ handleSubmit ~ pathname:", pathname);
       if (pathname === "/maturity") {
@@ -96,6 +112,8 @@ const UploaderModal: React.FC<UploaderModalProps> = ({
 
         if (res?.statusCode === 200) {
           const matchedMango = res.data;
+          console.log("🚀 ~ handleSubmit ~ matchedMango:", matchedMango);
+
           if (matchedMango) {
             router.push(`/grading/${matchedMango}`);
           } else {
@@ -109,9 +127,10 @@ const UploaderModal: React.FC<UploaderModalProps> = ({
         console.log("🚀 ~ handleSubmit ~ res:", res);
 
         if (res?.statusCode === 200) {
-          const matchedMango = _.find(mangoTypes, { name: res.data });
+          const matchedMango = res.data;
+          console.log("🚀 ~ handleSubmit ~ matchedMango:", matchedMango);
           if (matchedMango) {
-            router.push(`/mango-varieties/${matchedMango.value}`);
+            router.push(`/mango-varieties/${matchedMango}`);
           } else {
             message.error("Mango variety not found!");
           }
@@ -182,7 +201,7 @@ const UploaderModal: React.FC<UploaderModalProps> = ({
             id="preview"
             src={previewSrc}
             alt="Preview"
-            style={{ marginTop: "20px", width: "100%", maxHeight: "300px" }}
+            style={{ marginTop: "20px", width: "100%" }}
           />
         )}
 

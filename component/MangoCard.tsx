@@ -17,16 +17,15 @@ const MangoCard: React.FC<CardProps> = ({ data }) => {
       <p>{data.name}</p>
       <div
         className="mango-img"
+        style={{ cursor: "pointer" }}
         onClick={() => {
           router.push(`mango-varieties/${data.id}`);
         }}
       >
         <Image
           // className="mango-img"
-          style={{ width: "300px" }}
           src={data.img} // Path relative to the public directory
           alt="Example Image"
-          width={300}
           height={200} // Update with the appropriate height
         />
       </div>

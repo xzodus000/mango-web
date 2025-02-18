@@ -25,7 +25,6 @@ export const predictMangoService = async (base64Image: any) => {
   });
 
   const url = "http://5.183.8.75:5000/upload";
-  // const url = "http://127.0.0.1:5000/upload-phase-maturity";
   // const url = "http://127.0.0.1:5000/upload";
 
   const formData = new FormData();
@@ -61,7 +60,6 @@ export const predictMangoPhase2Service = async (base64Image: any) => {
 
   const url = "http://5.183.8.75:5000/upload-phase-maturity";
   // const url = "http://127.0.0.1:5000/upload-phase-maturity";
-  // const url = "http://127.0.0.1:5000/upload";
 
   const formData = new FormData();
   formData.append("file", file);

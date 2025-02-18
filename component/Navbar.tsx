@@ -19,9 +19,7 @@ const Navbar: React.FC = () => {
   const [typeModal, setTypeModal] = useState<"contact" | "about">("contact");
 
   const pages: Page[] = [
-    { id: 2, name: "Maturity", pathname: "/maturity" },
     { id: 3, name: "Mango varieties", pathname: "/mango-varieties" },
-    { id: 4, name: "Commercial grading", pathname: "/grading" },
     { id: 5, name: "Contact", pathname: "/contact" },
     { id: 6, name: "About us", pathname: "/about" },
   ];

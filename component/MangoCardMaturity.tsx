@@ -23,10 +23,8 @@ const MangoCard: React.FC<CardProps> = ({ data }) => {
       >
         <Image
           // className="mango-img"
-          style={{ width: "300px" }}
           src={data.img} // Path relative to the public directory
           alt="Example Image"
-          width={300}
           height={200} // Update with the appropriate height
         />
       </div>
