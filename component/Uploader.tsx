@@ -27,7 +27,7 @@ const UploaderModal: React.FC<UploaderModalProps> = ({
 
   const mangoTypes = [
     { name: "Mahachanok", value: "MHN" },
-    { name: "Nam dok mai", value: "NDM" },
+    { name: "Nam dok mai ", value: "NDM" },
     { name: "R2E2", value: "R2E2" },
   ];
 

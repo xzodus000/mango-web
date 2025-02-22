@@ -2,8 +2,8 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
-import { Modal } from "antd";
+import { usePathname, useRouter } from "next/navigation";
+import { Dropdown, MenuProps, Modal } from "antd";
 import logo from "../public/assets/logo.png";
 import contact from "../public/assets/contact.png";
 
@@ -17,11 +17,76 @@ const Navbar: React.FC = () => {
   const pathname = usePathname();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [typeModal, setTypeModal] = useState<"contact" | "about">("contact");
-
+  const router = useRouter();
   const pages: Page[] = [
     { id: 3, name: "Mango varieties", pathname: "/mango-varieties" },
     { id: 5, name: "Contact", pathname: "/contact" },
     { id: 6, name: "About us", pathname: "/about" },
+  ];
+
+  const go_to = (url: string) => {
+    http: router.push(url);
+  };
+  5;
+  const items: MenuProps["items"] = [
+    {
+      key: "NDM",
+      label: "Namdokmai Sithong",
+      children: [
+        {
+          key: "NDM_M1",
+          label: "M1 immature",
+          onClick: () => go_to("/grading/NDM_M1"),
+        },
+        {
+          key: "NDM_M2",
+          onClick: () => go_to("/grading/NDM_M2"),
+          label: "M2 Exporting maturity",
+        },
+        {
+          key: "NDM_M3",
+          onClick: () => go_to("/grading/NDM_M3"),
+          label: "M3 Exporting maturity",
+        },
+      ],
+    },
+    {
+      key: "MHN",
+      label: "Mahachanok",
+      children: [
+        {
+          key: "MHN_M1",
+          onClick: () => go_to("/grading/MHN_M1"),
+          label: "M1 immature",
+        },
+        {
+          key: "MHN_M2",
+          onClick: () => go_to("/grading/MHN_M2"),
+          label: "M2 Exporting maturity",
+        },
+        {
+          key: "MHN_M3",
+          onClick: () => go_to("/grading/MHN_M3"),
+          label: "M3 Exporting maturity",
+        },
+      ],
+    },
+    {
+      key: "R2E2",
+      label: "R2E2",
+      children: [
+        {
+          key: "R2E2_M1",
+          onClick: () => go_to("/grading/R2E2_M1"),
+          label: "M1 immature",
+        },
+        {
+          key: "R2E2_M2",
+          onClick: () => go_to("/grading/R2E2_M2"),
+          label: "M2 Exporting maturity",
+        },
+      ],
+    },
   ];
 
   const handleModalOpen = (modalType: "contact" | "about") => {
@@ -39,9 +104,11 @@ const Navbar: React.FC = () => {
         </div>
         <div className="flex-2">
           <ul className="menu menu-horizontal px-1">
-            <li key={1} className={pathname === "/" ? "active" : ""}>
-              <Link href="/">Home</Link>
-            </li>
+            <Dropdown menu={{ items }}>
+              <li key={1} className={pathname === "/" ? "active" : ""}>
+                <Link href="/">Home</Link>
+              </li>
+            </Dropdown>
             {pages.map((item) => (
               <li
                 key={item.id}

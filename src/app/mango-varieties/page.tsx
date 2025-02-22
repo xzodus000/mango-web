@@ -50,8 +50,8 @@ export default function Home() {
             <div className="title">
               <p>Application to</p>
               <p>commercial</p>
-              <p className="yellow">mango variety</p>
-              <p className="green">classification</p>
+              <p className="green">mango variety</p>
+              <p className="title">classification</p>
             </div>
           </div>
           <div className="box">

@@ -457,7 +457,7 @@ body {
   font-family: "Poppins";
   font-style: normal;
   font-weight: 500;
-  font-size: 20px;
+  font-size: 30px;
   line-height: 30px;
   /* or 150% */
 
@@ -483,7 +483,8 @@ body {
 }
 
 .box-res-grading .card {
-  width: 263px;
+  padding: 20px;
+  width: 463px;
   height: 161px;
   background: #ffffff;
   box-shadow: 0px 4px 100px rgba(0, 0, 0, 0.1);

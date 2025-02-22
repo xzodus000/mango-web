@@ -3,13 +3,14 @@ import Image from "next/image"; // Assuming you're using Next.js for image handl
 
 // Your mango images
 import R2E2 from "../public/assets/component/R2E2/R2E2 02.png";
-import { Carousel } from "antd";
+import { Carousel, Dropdown, MenuProps } from "antd";
 import { useRouter } from "next/navigation";
 export interface MangoCard {
   image: any; // The image or mango variety
   title: string; // The title of the card
   text: string; // The text content of the card
   go_to_url?: string;
+  dropdown?: MenuProps["items"];
 }
 
 interface MangoSliderProps {
@@ -25,6 +26,29 @@ const MangoSlider: React.FC<MangoSliderProps> = ({ data }) => {
   };
 
   const Card = (MangoCard: MangoCard) => {
+    if (MangoCard.dropdown) {
+      const items = MangoCard.dropdown;
+
+      return (
+        <Dropdown menu={{ items }}>
+          <div
+            className="card-mango"
+            style={{ cursor: MangoCard.go_to_url ? "pointer" : "" }}
+            onClick={() => {
+              if (MangoCard.go_to_url) {
+                router.push(MangoCard.go_to_url);
+              }
+            }}
+          >
+            <Image src={MangoCard.image} alt={MangoCard.title}></Image>
+            <div className="card-mango-body">
+              <h2 className="card-mango-title">{MangoCard.title}</h2>
+              <p className="card-mango-text">{MangoCard.text}</p>
+            </div>
+          </div>
+        </Dropdown>
+      );
+    }
     return (
       <div
         className="card-mango"

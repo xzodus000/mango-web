@@ -21,8 +21,9 @@ import m1_bg from "../../../../public/assets/component/m1_bg.png";
 
 import tri from "../../../../public/assets/icon/tri.png";
 import tree from "../../../../public/assets/mango/tree.png";
-import { useRouter } from "next/router";
+
 import { Carousel } from "antd";
+import { useRouter } from "next/navigation";
 var _ = require("lodash");
 interface pageProps {
   params: {
@@ -33,6 +34,7 @@ interface Mango {
   id: string;
   name: string;
   maturityStage: string;
+  remark: string;
   type: string;
   desc: string;
   image: any; // Assuming the image path or identifier is a string
@@ -40,13 +42,15 @@ interface Mango {
 }
 
 // const Layout: React.FC<pageProps> = ({ params }) => {
-
+// immature;
 export default function Mango({ params }: pageProps) {
+  const router = useRouter();
   const [dataset, setDataset] = useState([
     {
       id: "MHN_M1",
       name: "Mahachanok Mango",
       maturityStage: "M1",
+      remark: "immature",
       type: "MHN",
       desc: "“Float in water, saline solution 2% and 3%”.",
       image: MHN1,
@@ -61,6 +65,7 @@ export default function Mango({ params }: pageProps) {
       id: "MHN_M2",
       name: "Mahachanok Mango",
       maturityStage: "M2",
+      remark: "Exporting maturity",
       type: "MHN",
       desc: "“Float in saline solution 2% and 3%”.",
       image: MHN2,
@@ -75,6 +80,7 @@ export default function Mango({ params }: pageProps) {
       id: "MHN_M3",
       name: "Mahachanok Mango",
       maturityStage: "M3",
+      remark: "Domestic maturity",
       type: "MHN",
       desc: "“Not float in water, saline solution 2% and 3%”.",
       image: MHN3,
@@ -89,6 +95,7 @@ export default function Mango({ params }: pageProps) {
       id: "NDM_M1",
       name: "Namdokmai Sithong Mango",
       maturityStage: "M1",
+      remark: "immature",
       type: "NDM",
       desc: "“Float in water, saline solution 2% and 3%”.",
       image: NDM1,
@@ -103,6 +110,7 @@ export default function Mango({ params }: pageProps) {
       id: "NDM_M2",
       name: "Namdokmai Sithong Mango",
       maturityStage: "M2",
+      remark: "Exporting maturity",
       type: "NDM",
       desc: "“Float in water, saline solution 2% and 3%”.",
       image: NDM2,
@@ -117,6 +125,7 @@ export default function Mango({ params }: pageProps) {
       id: "NDM_M3",
       name: "Namdokmai Sithong Mango",
       maturityStage: "M3",
+      remark: "Domestic maturity",
       type: "NDM",
       desc: "“Not float in water, saline solution 2% and 3%”.",
       image: NDM3,
@@ -131,6 +140,7 @@ export default function Mango({ params }: pageProps) {
       id: "R2E2_M1",
       name: "R2E2 Mango",
       maturityStage: "M1",
+      remark: "immature",
       type: "R2E2",
       desc: "“Dry matter less han or equal 13%”.",
       image: R2E21,
@@ -144,6 +154,7 @@ export default function Mango({ params }: pageProps) {
       id: "R2E2_M2",
       name: "R2E2 Mango",
       maturityStage: "M2",
+      remark: "Exporting maturity",
       type: "R2E2",
       desc: "“Dry matter more than 13%”.",
       image: R2E22,
@@ -157,6 +168,7 @@ export default function Mango({ params }: pageProps) {
     id: "MHNM1",
     name: ".....?",
     maturityStage: "?",
+    remark: "immature",
     type: "MHN",
     desc: "“..?”",
     image: m1_bg,
@@ -207,7 +219,12 @@ export default function Mango({ params }: pageProps) {
               <div className="black-desc"> {selectedMango.name}</div>
               <div className="grading-desc">{selectedMango.desc}</div>
               <div
+                onClick={() => {
+                  // /mango-varieties/DMN;
+                  router.push(`/mango-varieties/${selectedMango.type}`);
+                }}
                 className={`learn-more ${selectedMango.maturityStage}`}
+                style={{ cursor: "pointer" }}
               >{`Learn more >>>`}</div>
             </div>
             <div className="box-res-grading">
@@ -219,7 +236,7 @@ export default function Mango({ params }: pageProps) {
                   {selectedMango.maturityStage}
                 </div>
                 <div className={`desc-text ${selectedMango.maturityStage}`}>
-                  (Exporting maturity)
+                  ({selectedMango.remark})
                 </div>
               </div>
               <div
