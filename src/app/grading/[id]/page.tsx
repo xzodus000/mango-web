@@ -189,118 +189,163 @@ export default function Mango({ params }: pageProps) {
   }, [params, dataset]);
 
   return (
-    <div className="mango-wrapper">
-      <div className="sec">
-        <div className="name">
-          {selectedMango.name}{" "}
-          <Image
-            // className="mango-img"
-            style={{ width: "70px" }}
-            src={icon_mango} // Path relative to the public directory
-            alt="Example Image"
-          ></Image>
+    <div className="w-full font-poppins">
+      <div className="w-full flex justify-center flex-col md:flex-row">
+        <div className="flex-1 flex justify-center items-center p-4">
+          <Image src={selectedMango.image} alt="Example Image" />
         </div>
-      </div>
-      <div className="sec">
-        <div className="two-container">
-          <div className="left">
-            <div className="tree-container ">
-              <Image
-                // className="mango-img"
-                // style={{ width: "70px" }}
-                src={selectedMango.image} // Path relative to the public directory
-                alt="Example Image"
-              ></Image>
+        <div className="flex-1 flex justify-center items-center p-4 flex-col">
+          <div className="space-y-1 p-6">
+            <div className="text-red-500 font-medium uppercase text-4xl">
+              WHAT THEY SAY
+            </div>
+            <div className="text-black font-semibold text-3xl">
+              {selectedMango.name}
+            </div>
+            <div className="text-gray-700 text-2xl">{selectedMango.desc}</div>
+            <div
+              onClick={() =>
+                router.push(`/mango-varieties/${selectedMango.type}`)
+              }
+              className={`underline text-xl text-blue-500 cursor-pointer hover:text-blue-700 ${selectedMango.maturityStage}`}
+            >
+              Learn more &gt;&gt;&gt;
             </div>
           </div>
-          <div className="right">
-            <div className="box-content">
-              <div className="red-desc">WHAT THEY SAY</div>
-              <div className="black-desc"> {selectedMango.name}</div>
-              <div className="grading-desc">{selectedMango.desc}</div>
+          {/* Grading Box */}
+          <div className="flex items-center justify-center gap-2">
+            {/* <div
+              className={`w-0 h-0 border-y-[15px] border-l-[20px] border-transparent border-l-${selectedMango.maturityStage}`}
+            ></div> */}
+            <div className="bg-white shadow-md p-4 rounded text-center">
               <div
-                onClick={() => {
-                  // /mango-varieties/DMN;
-                  router.push(`/mango-varieties/${selectedMango.type}`);
-                }}
-                className={`learn-more ${selectedMango.maturityStage}`}
-                style={{ cursor: "pointer" }}
-              >{`Learn more >>>`}</div>
-            </div>
-            <div className="box-res-grading">
-              <div
-                className={`triangle left ${selectedMango.maturityStage}`}
-              ></div>
-              <div className="card">
-                <div className={`main-text ${selectedMango.maturityStage}`}>
-                  {selectedMango.maturityStage}
-                </div>
-                <div className={`desc-text ${selectedMango.maturityStage}`}>
-                  ({selectedMango.remark})
-                </div>
+                className={`font-bold text-4xl ${selectedMango.maturityStage}`}
+              >
+                {selectedMango.maturityStage}
               </div>
-              <div
-                className={`triangle right ${selectedMango.maturityStage}`}
-              ></div>
+              <div className={`text-xl  ${selectedMango.maturityStage}`}>
+                ({selectedMango.remark})
+              </div>
             </div>
+            {/* <div
+              className={`w-0 h-0 border-y-[15px] border-r-[20px] border-transparent border-r-${selectedMango.maturityStage}`}
+            ></div> */}
           </div>
         </div>
       </div>
-      <div className="sec">
-        <div className="table-maturity">
-          <div className="row line-text bottom">Maturity</div>
-          {selectedMango.type === "R2E2" ? (
-            <>
-              <div className="row line-text bottom">
-                <div className="column line-text right">{`Dry matter <= 13%`}</div>
-                <div className="column line-text right">{`Dry matter > 13%`}</div>
+      {/* <div className="table-maturity">
+        <div className="row line-text bottom">Maturity</div>
+        {selectedMango.type === "R2E2" ? (
+          <>
+            <div className="row line-text bottom">
+              <div className="column line-text right">{`Dry matter <= 13%`}</div>
+              <div className="column line-text right">{`Dry matter > 13%`}</div>
+            </div>
+            <div className="row tiktok">
+              <div className="column line-text right">
+                <Image
+                  src={selectedMango.maturity?.dryLess ? correct : wrong}
+                  alt="footer1"
+                />
               </div>
-              <div className="row tiktok">
-                <div className="column line-text right">
-                  <Image
-                    src={selectedMango.maturity?.dryLess ? correct : wrong}
-                    alt="footer1"
-                  ></Image>
-                </div>
+              <div className="column">
+                <Image
+                  src={selectedMango.maturity?.dryMore ? correct : wrong}
+                  alt="footer1"
+                />
+              </div>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="row line-text bottom">
+              <div className="column line-text right">water</div>
+              <div className="column line-text right">saline solution 2%</div>
+              <div className="column line-text">saline solution 3%</div>
+            </div>
+            <div className="row tiktok">
+              <div className="column line-text right">
+                <Image
+                  src={selectedMango.maturity?.water ? correct : wrong}
+                  alt="footer1"
+                />
+              </div>
+              <div className="column line-text right">
+                <Image
+                  src={selectedMango.maturity?.saline2 ? correct : wrong}
+                  alt="footer1"
+                />
+              </div>
+              <div className="column">
+                <Image
+                  src={selectedMango.maturity?.saline3 ? correct : wrong}
+                  alt="footer1"
+                />
+              </div>
+            </div>
+          </>
+        )}
+      </div> */}
+      <div className="w-full max-w-5xl mx-auto p-4 mt-6">
+        <div className="text-center text-3xl font-semibold border-b pb-2 mb-4">
+          Maturity
+        </div>
 
-                <div className="column">
-                  <Image
-                    src={selectedMango.maturity?.dryMore ? correct : wrong}
-                    alt="footer1"
-                  ></Image>
-                </div>
+        {selectedMango.type === "R2E2" ? (
+          <>
+            <div className="grid grid-cols-2 gap-2 text-xl font-medium text-center border-b pb-2 mb-4">
+              <div>Dry matter ≤ 13%</div>
+              <div>Dry matter &gt; 13%</div>
+            </div>
+            <div className="grid grid-cols-2 gap-4 items-center justify-items-center">
+              <div>
+                <Image
+                  src={selectedMango.maturity?.dryLess ? correct : wrong}
+                  alt="dryLess"
+                  className="w-8 h-8 md:w-10 md:h-10"
+                />
               </div>
-            </>
-          ) : (
-            <>
-              <div className="row line-text bottom">
-                <div className="column line-text right">water</div>
-                <div className="column line-text right">saline solution 2%</div>
-                <div className="column line-text">saline solution 3%</div>
+              <div>
+                <Image
+                  src={selectedMango.maturity?.dryMore ? correct : wrong}
+                  alt="dryMore"
+                  className="w-8 h-8 md:w-10 md:h-10"
+                />
               </div>
-              <div className="row tiktok">
-                <div className="column line-text right">
-                  <Image
-                    src={selectedMango.maturity?.water ? correct : wrong}
-                    alt="footer1"
-                  ></Image>
-                </div>
-                <div className="column line-text right">
-                  <Image
-                    src={selectedMango.maturity?.saline2 ? correct : wrong}
-                    alt="footer1"
-                  ></Image>
-                </div>
-                <div className="column">
-                  <Image
-                    src={selectedMango.maturity?.saline3 ? correct : wrong}
-                    alt="footer1"
-                  ></Image>
-                </div>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="grid grid-cols-3 gap-2 text-xl font-medium text-center border-b pb-2 mb-4">
+              <div>Water</div>
+              <div>Saline solution 2%</div>
+              <div>Saline solution 3%</div>
+            </div>
+            <div className="grid grid-cols-3 gap-4 items-center justify-items-center">
+              <div>
+                <Image
+                  src={selectedMango.maturity?.water ? correct : wrong}
+                  alt="water"
+                  className="w-8 h-8 md:w-10 md:h-10"
+                />
               </div>
-            </>
-          )}
-        </div>
+              <div>
+                <Image
+                  src={selectedMango.maturity?.saline2 ? correct : wrong}
+                  alt="saline2"
+                  className="w-8 h-8 md:w-10 md:h-10"
+                />
+              </div>
+              <div>
+                <Image
+                  src={selectedMango.maturity?.saline3 ? correct : wrong}
+                  alt="saline3"
+                  className="w-8 h-8 md:w-10 md:h-10"
+                />
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

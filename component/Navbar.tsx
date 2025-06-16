@@ -19,7 +19,7 @@ const Navbar: React.FC = () => {
   const [typeModal, setTypeModal] = useState<"contact" | "about">("contact");
   const router = useRouter();
   const pages: Page[] = [
-    { id: 3, name: "Mango varieties", pathname: "/mango-varieties" },
+    // { id: 3, name: "Mango varieties", pathname: "/mango-varieties" },
     { id: 5, name: "Contact", pathname: "/contact" },
     { id: 6, name: "About us", pathname: "/about" },
   ];
@@ -98,15 +98,28 @@ const Navbar: React.FC = () => {
     <>
       <div className="navbar bg-base-100">
         <div className="flex-1">
-          <Link href="/" className="btn btn-ghost normal-case text-xl">
-            <Image src={logo} alt="Logo" />
+          <Link href="/" className="btn btn-ghost normal-case ">
+            <Image className="logo" src={logo} alt="Example Logo" />
           </Link>
         </div>
         <div className="flex-2">
-          <ul className="menu menu-horizontal px-1">
+          <ul className="menu menu-horizontal px-1 ">
+            <li key={1} className={pathname === "/" ? "active" : ""}>
+              <Link href="/">
+                <div className="nav-title">Home</div>
+                {/* nav-title */}
+              </Link>
+            </li>
+
             <Dropdown menu={{ items }}>
-              <li key={1} className={pathname === "/" ? "active" : ""}>
-                <Link href="/">Home</Link>
+              <li
+                key={1}
+                className={pathname === "/mango-varieties" ? "active" : ""}
+              >
+                <Link href="/mango-varieties">
+                  {" "}
+                  <div className="  nav-title">Mango varieties</div>
+                </Link>
               </li>
             </Dropdown>
             {pages.map((item) => (
@@ -125,7 +138,7 @@ const Navbar: React.FC = () => {
                       handleModalOpen(isContact ? "contact" : "about");
                     }}
                   >
-                    {item.name}
+                    <div className="  nav-title">{item.name}</div>
                   </a>
                 ) : (
                   <Link href={item.pathname}>{item.name}</Link>

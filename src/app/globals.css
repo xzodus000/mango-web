@@ -77,6 +77,10 @@ body {
   margin-right: 0;
 }
 
+.font-poppins {
+  font-family: "Poppins";
+}
+
 .navbar .menu li a {
   color: #333333;
   font-size: 30px;
@@ -328,7 +332,11 @@ body {
   justify-content: center;
   align-items: center;
 }
-
+@media (min-width: 1000px) {
+  .sec .container {
+    flex-direction: column !important;
+  }
+}
 .sec .two-container .left {
   flex: 1;
 }
@@ -690,5 +698,28 @@ body {
 
   .card-mango-text {
     font-size: 14px;
+  }
+}
+.nav-title {
+  text-align: center;
+  font-size: 1.875rem /* 30px */;
+  line-height: 2.25rem /* 36px */;
+}
+@media (max-width: 768px) {
+  .nav-title {
+    font-size: 1.875rem /* 30px */;
+    line-height: 2.25rem /* 36px */;
+  }
+}
+@media (max-width: 425px) {
+  .nav-title {
+    font-size: 0.875rem /* 30px */;
+    line-height: 1.25rem /* 36px */;
+  }
+}
+
+@media (max-width: 573px) {
+  .logo {
+    width: 100px;
   }
 }
