@@ -30,23 +30,21 @@ const MangoSlider: React.FC<MangoSliderProps> = ({ data }) => {
       const items = MangoCard.dropdown;
 
       return (
-        <Dropdown menu={{ items }}>
-          <div
-            className="card-mango"
-            style={{ cursor: MangoCard.go_to_url ? "pointer" : "" }}
-            onClick={() => {
-              if (MangoCard.go_to_url) {
-                router.push(MangoCard.go_to_url);
-              }
-            }}
-          >
-            <Image src={MangoCard.image} alt={MangoCard.title}></Image>
-            <div className="card-mango-body">
-              <h2 className="card-mango-title">{MangoCard.title}</h2>
-              <p className="card-mango-text">{MangoCard.text}</p>
-            </div>
+        <div
+          className="card-mango"
+          style={{ cursor: MangoCard.go_to_url ? "pointer" : "" }}
+          onClick={() => {
+            if (MangoCard.go_to_url) {
+              router.push(MangoCard.go_to_url);
+            }
+          }}
+        >
+          <Image src={MangoCard.image} alt={MangoCard.title}></Image>
+          <div className="card-mango-body">
+            <h2 className="card-mango-title">{MangoCard.title}</h2>
+            <p className="card-mango-text">{MangoCard.text}</p>
           </div>
-        </Dropdown>
+        </div>
       );
     }
     return (

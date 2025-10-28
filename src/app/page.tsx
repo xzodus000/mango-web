@@ -74,21 +74,21 @@ export default function Maturity() {
     {
       image: NDM,
       title: "Namdokmai Sithong",
-      go_to_url: "/grading/phase/NDM",
+      go_to_url: "/mango-varieties/NDM",
       dropdown: itemsNDM,
       text: "Nam Dok Mai Mango It is a local mango in Thailand. Currently found growing in every region. and is grown for trade in much of the region Central, Northern, Northeastern, Eastern, and Western regions.",
     },
     {
       image: MHN,
       title: "Mahachanok ",
-      go_to_url: "/grading/phase/MHN",
+      go_to_url: "/mango-varieties/MHN",
       dropdown: itemsMHN,
       text: "Mahachanok mango is a variety of mango that is widely grown in Thailand, mostly grown in northern areas. It is also cultivated in the central region, but like in the north, their availability in the market is limited to a single season, from April to May.",
     },
     {
       image: R2E2,
       title: "R2E2",
-      go_to_url: "/grading/phase/R2E2",
+      go_to_url: "/mango-varieties/R2E2",
       dropdown: itemsR2E2,
       text: "R2E2 is a mango variety known for its large fruit size and vibrant color. In 1985, mango scholars Mr. Ian Balle, Mr. Ross Wright, and Mr. Peter Beale from Australia developed this variety. It was selected from seedlings of the Florida Kent mango and named 'R2E2' (R2E2), which stands for 'Row 2, Experiment 2', reflecting its origin in the development process at the Horticultural Research Institute in Australia.",
     },
@@ -115,8 +115,8 @@ export default function Maturity() {
           <div className="box">
             <div className="desc break-words">
               We explore three major mango varieties:
-              <br /> Nam Dok Mai, Mahachanok, and R2E2. and Matutrity Stage (M1,
-              M2 and M3)
+              <br /> Nam Dok Mai, Mahachanok, and R2E2. Across three maturity
+              stages (M1, M2, and M3)
             </div>
           </div>
           <div className="box">
