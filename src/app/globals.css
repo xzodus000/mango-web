@@ -77,15 +77,17 @@ body {
   margin-right: 0;
 }
 
-.font-poppins {
-  font-family: "Poppins";
+.font-Arial,
+Helvetica,
+sans-serif {
+  font-family: "Arial";
 }
 
 .navbar .menu li a {
   color: #333333;
   font-size: 30px;
   text-decoration: none;
-  font-family: "Poppins";
+  font-family: "Arial";
   font-style: normal;
   font-weight: 500;
   line-height: 22px;
@@ -156,7 +158,7 @@ body {
 }
 
 .home-wrapper .left-content .container .box .title {
-  font-family: "Poppins";
+  font-family: "Arial";
   font-style: normal;
   font-weight: 700;
   font-size: 100px; /* Default for smaller screens */
@@ -198,7 +200,7 @@ body {
 }
 
 .home-wrapper .left-content .container .box .desc {
-  font-family: "Inter";
+  font-family: "Arial";
   font-style: normal;
   font-weight: 400;
   font-size: 30px;
@@ -240,7 +242,7 @@ body {
   width: 30%;
   min-height: 750px;
   height: 70%;
-  font-family: "Poppins";
+  font-family: "Arial";
   font-style: normal;
   font-weight: 700;
   font-size: 32px;
@@ -271,7 +273,7 @@ body {
   margin-bottom: 30px;
 }
 .mango-wrapper .sec .name {
-  font-family: "Poppins";
+  font-family: "Arial";
   font-style: normal;
   font-weight: 700;
   font-size: 64px;
@@ -288,7 +290,7 @@ body {
 }
 
 .mango-wrapper .sec .slogan {
-  font-family: "Poppins";
+  font-family: "Arial";
   font-style: normal;
   font-weight: 700;
   font-size: 24px;
@@ -299,7 +301,7 @@ body {
 }
 
 .topic {
-  font-family: "Poppins";
+  font-family: "Arial";
   font-style: normal;
   font-weight: 700;
   font-size: 55px;
@@ -309,13 +311,13 @@ body {
   color: #ff9500;
 }
 .topic-desc {
-  font-family: "Poppins";
+  font-family: "Arial";
   font-style: normal;
   font-weight: 400;
   font-size: 24px;
   line-height: 36px;
   text-align: justify;
-
+  word-break: break-word;
   color: #075107;
 }
 
@@ -393,7 +395,7 @@ body {
 }
 
 .n-desc {
-  font-family: "Poppins";
+  font-family: "Arial";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -401,6 +403,7 @@ body {
   text-align: justify;
   text-indent: 50px;
   color: #075107;
+  word-break: break-word;
 }
 
 .footer {
@@ -437,44 +440,47 @@ body {
 }
 
 .red-desc {
-  font-family: "Poppins";
+  font-family: "Arial";
   font-style: normal;
   font-weight: 600;
   font-size: 18px;
   line-height: 22px;
   /* identical to box height, or 124% */
   letter-spacing: 0.16em;
+  word-break: break-word;
 
   /* Red */
   color: #eb5757;
 }
 
 .black-desc {
-  font-family: "Poppins";
+  font-family: "Arial";
   font-style: normal;
   font-weight: 700;
   font-size: 45px;
   line-height: 30px;
   /* or 67% */
+  word-break: break-word;
 
   /* Gray 1 */
   color: #333333;
 }
 
 .grading-desc {
-  font-family: "Poppins";
+  font-family: "Arial";
   font-style: normal;
   font-weight: 500;
   font-size: 30px;
   line-height: 30px;
   /* or 150% */
+  word-break: break-word;
 
   /* Gray 1 */
   color: #333333;
   margin: 20px 0;
 }
 .learn-more {
-  font-family: "Poppins";
+  font-family: "Arial";
   font-style: normal;
   font-weight: 600;
   font-size: 18px;
@@ -537,7 +543,7 @@ body {
   border-color: transparent #aa52f7 transparent transparent;
 }
 .box-res-grading .card .main-text {
-  font-family: "Poppins";
+  font-family: "Arial";
   font-style: normal;
   font-weight: 700;
   font-size: 45px;
@@ -546,7 +552,7 @@ body {
 }
 
 .box-res-grading .card .desc-text {
-  font-family: "Poppins";
+  font-family: "Arial";
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
@@ -573,7 +579,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  font-family: "Poppins";
+  font-family: "Arial";
   font-style: normal;
   font-weight: 700;
   font-size: 32px;

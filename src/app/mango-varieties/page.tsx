@@ -55,7 +55,7 @@ export default function Home() {
             </div>
           </div>
           <div className="box">
-            <div className="desc">
+            <div className="desc break-words">
               We explore three major mango varieties:
               <br /> Nam Dok Mai, Mahachanok, and R2E2.
             </div>

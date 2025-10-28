@@ -189,7 +189,7 @@ export default function Mango({ params }: pageProps) {
   }, [params, dataset]);
 
   return (
-    <div className="w-full font-poppins">
+    <div className="w-full font-Arial, Helvetica, sans-serif">
       <div className="w-full flex justify-center flex-col md:flex-row">
         <div className="flex-1 flex justify-center items-center p-4">
           <Image src={selectedMango.image} alt="Example Image" />

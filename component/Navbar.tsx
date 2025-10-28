@@ -154,7 +154,7 @@ const Navbar: React.FC = () => {
           <div
             style={{
               fontSize: "50px",
-              fontFamily: "Poppins",
+              fontFamily: "Arial",
               fontWeight: "500",
             }}
           >
@@ -173,7 +173,7 @@ const Navbar: React.FC = () => {
           <p
             style={{
               fontSize: "30px",
-              fontFamily: "Poppins",
+              fontFamily: "Arial",
               fontWeight: "500",
             }}
           >
